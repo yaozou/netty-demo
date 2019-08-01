@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * IO实现
+ * BIO实现
  */
 public class SocketServer {
     public static void main(String[] args) throws Exception{
