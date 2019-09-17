@@ -15,11 +15,11 @@ import java.util.Set;
  */
 public class SelectorServer {
     public static void main(String[] args) throws Exception{
-        int port = 8081;
+        final int port = 8081;
         // 1、轮询是否有新连接
-        Selector server = Selector.open();
+        final Selector server = Selector.open();
         // 2、轮询连接是否有数据可读
-        Selector client = Selector.open();
+        final Selector client = Selector.open();
 
         new Thread(new Runnable() {
             @Override

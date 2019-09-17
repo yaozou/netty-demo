@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class SocketClient {
     public static void main(String[] args) throws Exception{
-        int port = 8081;
+        final int port = 8081;
         new Thread(new Runnable() {
             @Override
             public void run() {

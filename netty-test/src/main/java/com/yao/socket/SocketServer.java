@@ -10,14 +10,14 @@ import java.net.Socket;
 public class SocketServer {
     public static void main(String[] args) throws Exception{
         int port = 8081;
-        ServerSocket server = new ServerSocket(port);
+        final ServerSocket server = new ServerSocket(port);
         new Thread(new Runnable() {
             @Override
             public void run(){
                 while (true){
                     try{
                         // 阻塞方法获得新链接
-                        Socket socket = server.accept();
+                        final Socket socket = server.accept();
 
                         //一个连接一个线程，读取消息
                         new Thread(new Runnable() {
