@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 
 /**
  * @Description: TODO
@@ -17,6 +18,10 @@ public class ClientChildChannel extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel channel) throws Exception {
         ChannelPipeline pipeline = channel.pipeline();
         //pipeline.addLast("ssl",createSSLHandler(channel));
+
+        // 粘包问题
+        pipeline.addLast(new LineBasedFrameDecoder(1024));
+
         pipeline.addLast(new ClientHandler());
     }
 

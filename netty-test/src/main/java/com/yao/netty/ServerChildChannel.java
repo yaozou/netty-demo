@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.mqtt.MqttDecoder;
 import io.netty.handler.codec.mqtt.MqttEncoder;
 import io.netty.handler.codec.string.StringDecoder;
@@ -26,7 +27,10 @@ public class ServerChildChannel extends ChannelInitializer<SocketChannel> {
         // 设置心跳机制
         pipeline.addFirst("idleStateHandler",new IdleStateHandler(10,0,0));
 
-        // 加解密 (netty自带的MQTT协议解析类)
+        // 粘包问题
+        pipeline.addLast(new LineBasedFrameDecoder(1024));
+
+        // 加解密
         pipeline.addLast("decoder", new StringDecoder());
         pipeline.addLast("encoder", new StringEncoder());
 

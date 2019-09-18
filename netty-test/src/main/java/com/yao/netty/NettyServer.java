@@ -35,6 +35,10 @@ public class NettyServer {
                     // 责任链 作用类似于Reactor模式中的handler类，主要用于处理网络I/O事件，例如记录日志、对消息进行编码等
                     .childHandler(new ServerChildChannel())
                     .option(ChannelOption.SO_BACKLOG,1024)
+
+                    //套接口发送缓冲区大小 （当write写入的字节大于套接口发送缓冲区大小，进行MSS大小的TCP分段）
+                   // .option(ChannelOption.SO_SNDBUF,1024)
+
                     .option(ChannelOption.SO_REUSEADDR,true)
                     .childOption(ChannelOption.TCP_NODELAY,true)
                     .childOption(ChannelOption.SO_KEEPALIVE,true)
