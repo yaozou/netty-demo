@@ -16,7 +16,7 @@ import java.util.Date;
 public class ClientHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        super.channelActive(ctx);
+        System.out.println("-------connected successfully--------");
         ctx.channel().writeAndFlush("Hi,Server!I'm client");
     }
 
