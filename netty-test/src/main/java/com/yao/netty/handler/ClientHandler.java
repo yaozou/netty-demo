@@ -22,6 +22,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        System.out.println("-------read successfully--------");
         System.out.println(new Date()+" client receive msg:"+msg);
     }
 }

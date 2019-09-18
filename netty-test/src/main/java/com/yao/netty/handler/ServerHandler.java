@@ -15,6 +15,18 @@ import java.util.Date;
 @ChannelHandler.Sharable
 public class ServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        String response = "registered completely";
+        ctx.channel().writeAndFlush(response);
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        String response = "read completely";
+        ctx.channel().writeAndFlush(response);
+    }
+
+    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println(new Date()+" server receive msg:"+msg);
 
